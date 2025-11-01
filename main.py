@@ -30,6 +30,11 @@ templates = Jinja2Templates(directory="templates")
 # Add thread pool executor for CPU-bound tasks
 executor = ThreadPoolExecutor(max_workers=3)
 
+
+@app.head("/")
+async def head_check():
+    return {"status": "ok"}
+
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(request: Request, exc: RequestValidationError):
     logger.error(f"Validation error: {exc.errors()}")
