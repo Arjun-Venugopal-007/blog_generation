@@ -1,0 +1,7 @@
+<svg width="800" height="400" xmlns="http://www.w3.org/2000/svg">
+            <rect width="800" height="400" fill="#f0f0f0" stroke="#ddd" stroke-width="2"/>
+            <text x="400" y="180" font-family="Arial, sans-serif" font-size="24" 
+                  text-anchor="middle" fill="#666">A Brief History of Kerala</text>
+            <text x="400" y="220" font-family="Arial, sans-serif" font-size="16" 
+                  text-anchor="middle" fill="#999">[SUBHEADING]</text>
+        </svg>

@@ -1,0 +1,426 @@
+{% extends "base.html" %}
+
+{% block title %}Choose Your Blog - {{ title }}{% endblock %}
+
+{% block content %}
+<div class="selection-container fade-in">
+    <div class="selection-header">
+        <h1 class="selection-title">
+            <i class="fas fa-magic"></i>
+            Select Your Blog Style
+        </h1>
+        <p class="selection-subtitle">
+            Explore three unique variations of your blog post, each tailored to a different style. Pick the one that resonates with your vision.
+        </p>
+        <div class="blog-info">
+            <span class="blog-title-badge">{{ title }}</span>
+        </div>
+    </div>
+
+    <div class="variations-grid">
+        {% for blog in blog_variations %}
+        <div class="variation-card" onclick="selectBlog({{ blog.id }}, `{{ blog.content_md | replace('`', '\\`') | replace('\n', '\\n') }}`)">
+            <!-- Image Carousel -->
+            <div class="variation-image-carousel">
+                {% if blog.images and blog.images|length > 0 %}
+                    <div class="image-slider">
+                        {% for image in blog.images %}
+                        <div class="image-slide">
+                            <img src="{{ image.path }}" alt="{{ image.query }}" class="preview-img">
+                        </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="no-image">
+                        <i class="fas fa-image"></i>
+                        <span>Images will be generated upon selection</span>
+                    </div>
+                {% endif %}
+                <div class="image-overlay">
+                    <div class="variation-number">
+                        <span>{{ blog.id }}</span>
+                    </div>
+                    <div class="select-button">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="variation-content">
+                <div class="variation-header">
+                    <div class="variation-info">
+                        <h3 class="variation-title">
+                            {% if blog.id == 1 %}
+                                Informative & Educational: {{ title }}
+                            {% elif blog.id == 2 %}
+                                Comparisons & Reviews: {{ title }}
+                            {% else %}
+                                Opinion & Thought Leadership: {{ title }}
+                            {% endif %}
+                        </h3>
+                    </div>
+                </div>
+                
+                <div class="variation-preview">
+                    <div class="preview-content">
+                        {{ blog.preview | replace('## ', '') | replace('\n', '<br>') | safe }}
+                    </div>
+                    <div class="preview-fade"></div>
+                </div>
+                
+                <div class="variation-footer">
+                    <span class="word-count">
+                        <i class="fas fa-file-text"></i>
+                        ~{{ (blog.content_md | length / 5) | round | int }} words
+                    </span>
+                    <span class="reading-time">
+                        <i class="fas fa-clock"></i>
+                        {{ ((blog.content_md | length / 1000) | round | int) or 1 }} min read
+                    </span>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="selection-actions">
+        <a href="/" class="btn btn-outline">
+            <i class="fas fa-arrow-left"></i>
+            Start Over
+        </a>
+    </div>
+</div>
+
+<!-- Hidden form for submission -->
+<form id="finalBlogForm" method="POST" action="/generate-final" style="display: none;">
+    <input type="hidden" name="title" value="{{ title }}">
+    <input type="hidden" name="description" value="{{ description }}">
+    <input type="hidden" name="selected_blog" id="selectedBlogContent">
+    {% if generate_image %}
+    <input type="hidden" name="generate_image" value="on">
+    {% endif %}
+</form>
+
+<style>
+body {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+}
+
+.selection-container {
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 2rem;
+}
+
+.selection-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.selection-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2d3748;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.selection-title i {
+    color: #4c51bf;
+    font-size: 2rem;
+}
+
+.selection-subtitle {
+    font-size: 1.2rem;
+    color: #718096;
+    max-width: 600px;
+    margin: 1rem auto;
+    line-height: 1.5;
+}
+
+.blog-title-badge {
+    background: linear-gradient(135deg, #4c51bf, #9f7aea);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 20px;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.variations-grid {
+    display: grid;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.variation-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    overflow: hidden;
+}
+
+.variation-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.variation-image-carousel {
+    width: 350px;
+    height: 250px;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.image-slider {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.image-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.image-slide.active {
+    opacity: 1;
+}
+
+.preview-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.no-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: #edf2f7;
+    color: #718096;
+    text-align: center;
+    padding: 1rem;
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 0.75rem;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.variation-number {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #4c51bf, #9f7aea);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.select-button {
+    width: 35px;
+    height: 35px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.select-button:hover {
+    background: #4c51bf;
+    transform: scale(1.1);
+}
+
+.variation-content {
+    padding: 2rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.variation-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 0.5rem;
+}
+
+.variation-preview {
+    position: relative;
+    flex: 1;
+    margin: 1rem 0;
+}
+
+.preview-content {
+    background: #f7fafc;
+    padding: 1.5rem;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    max-height: 150px;
+    overflow: hidden;
+}
+
+.preview-fade {
+    position: absolute;
+    bottom: 0;
+    left: 1.5rem;
+    right: 1.5rem;
+    height: 30px;
+    background: linear-gradient(transparent, #f7fafc);
+}
+
+.variation-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    color: #718096;
+    font-size: 0.9rem;
+}
+
+.selection-actions {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-outline {
+    background: white;
+    color: #4a5568;
+    border: 2px solid #e2e8f0;
+}
+
+.btn-outline:hover {
+    background: #4c51bf;
+    color: white;
+    border-color: transparent;
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.variation-card.loading {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.variation-card.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 25px;
+    height: 25px;
+    border: 3px solid #edf2f7;
+    border-top: 3px solid #4c51bf;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+    .selection-container {
+        padding: 1rem;
+    }
+    
+    .selection-title {
+        font-size: 2rem;
+    }
+    
+    .variation-card {
+        flex-direction: column;
+    }
+    
+    .variation-image-carousel {
+        width: 100%;
+        height: 200px;
+        border-radius: 15px 15px 0 0;
+    }
+    
+    .variation-content {
+        padding: 1.5rem;
+    }
+}
+</style>
+
+<script>
+function selectBlog(variationId, content) {
+    const cards = document.querySelectorAll('.variation-card');
+    cards.forEach(card => card.classList.add('loading'));
+    
+    document.getElementById('selectedBlogContent').value = content;
+    document.getElementById('finalBlogForm').submit();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const cards = document.querySelectorAll('.variation-card');
+    cards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.2}s`;
+        card.classList.add('fade-in');
+        
+        // Initialize image slider with first image only
+        const slides = card.querySelectorAll('.image-slide');
+        if (slides.length > 0) {
+            slides[0].classList.add('active');
+        }
+    });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,253 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }} - BlogAI{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Blog Header -->
+    <div class="blog-header">
+        {% if featured_image %}
+        <div class="featured-image">
+            <img src="{{ featured_image.path }}" class="hero-image">
+            <div class="image-overlay">
+                <div class="blog-meta">
+                    <span class="blog-category">AI Generated</span>
+                    <h1 class="blog-title">{{ title }}</h1>
+                    <p class="blog-description">{{ description[:150] }}...</p>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="blog-header-simple">
+            <span class="blog-category">AI Generated</span>
+            <h1 class="blog-title">{{ title }}</h1>
+            <p class="blog-description">{{ description[:150] }}...</p>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="blog-layout">
+        <!-- Blog Content -->
+        <article class="blog-article">
+            <div class="blog-content">
+                {% for paragraph in paragraphs %}
+                    {% if paragraph != "<p>No content available for this section.</p>" %}
+                        {{ paragraph|safe }}
+                        {% if loop.index0 < content_images|length %}
+                        <div class="content-image">
+                            <img src="{{ content_images[loop.index0].path }}">
+                        </div>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </article>
+
+        <!-- Sidebar with Action Buttons Only -->
+        <aside class="blog-sidebar">
+            <div class="sidebar-actions">
+                <button onclick="history.back()" class="btn btn-outline btn-full">
+                    <i class="fas fa-arrow-left"></i> Go Back
+                </button>
+                <a href="/create" class="btn btn-primary btn-full">Create New Blog</a>
+                <button onclick="window.print()" class="btn btn-secondary btn-full">Print Blog</button>
+                <button onclick="copyToClipboard()" class="btn btn-secondary btn-full">Copy Content</button>
+            </div>
+        </aside>
+    </div>
+</div>
+
+
+<style>
+body {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.blog-header {
+    margin-bottom: 3rem;
+}
+
+.featured-image {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.hero-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.blog-meta {
+    text-align: center;
+    color: white;
+    padding: 2rem;
+}
+
+.blog-category {
+    display: inline-block;
+    background: #4c51bf;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.blog-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0.5rem 0;
+}
+
+.blog-description {
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.blog-header-simple {
+    text-align: center;
+    padding: 2rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.blog-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+}
+
+.blog-article {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.blog-content {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #2d3748;
+}
+
+.blog-content h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #1a202c;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.content-image {
+    margin: 1.5rem 0;
+    text-align: center;
+}
+
+.content-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.blog-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.sidebar-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.btn {
+    padding: 0.75rem;
+    border-radius: 10px;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.btn-full {
+    width: 100%;
+}
+
+.btn-primary {
+    background: #4c51bf;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #434190;
+}
+
+.btn-secondary {
+    background: #edf2f7;
+    color: #4a5568;
+}
+
+.btn-secondary:hover {
+    background: #e2e8f0;
+}
+
+.btn-outline {
+    background: white;
+    color: #4a5568;
+    border: 2px solid #e2e8f0;
+}
+
+.btn-outline:hover {
+    background: #4c51bf;
+    color: white;
+    border-color: transparent;
+}
+
+@media (max-width: 768px) {
+    .blog-layout {
+        grid-template-columns: 1fr;
+    }
+    
+    .hero-image {
+        height: 300px;
+    }
+    
+    .blog-title {
+        font-size: 2rem;
+    }
+}
+</style>
+
+<script>
+function copyToClipboard() {
+    const blogContent = document.querySelector('.blog-content').innerText;
+    navigator.clipboard.writeText(blogContent).then(() => {
+        alert('Blog content copied to clipboard!');
+    });
+}
+</script>
+{% endblock %}

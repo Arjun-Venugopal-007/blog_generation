@@ -1,0 +1,474 @@
+{% extends "base.html" %}
+
+{% block title %}Examples - BlogAI{% endblock %}
+
+{% block content %}
+<div class="examples-hero">
+    <div class="examples-hero-content">
+        <h1 class="examples-title">Blog Creation Examples</h1>
+        <p class="examples-subtitle">Learn how to create amazing blogs with real examples and step-by-step guides</p>
+    </div>
+</div>
+
+<div class="examples-content">
+    <!-- How to Create Section -->
+    <section class="examples-section">
+        <div class="section-header">
+            <h2><i class="fas fa-lightbulb"></i> How to Create a Blog</h2>
+            <p>Follow these simple steps to generate professional blog content</p>
+        </div>
+        
+        <div class="steps-container">
+            <div class="step-item">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Enter Your Blog Title</h3>
+                    <p>Start with a clear, engaging title that captures your topic</p>
+                    <div class="example-input">
+                        <i class="fas fa-edit"></i>
+                        <span>"10 Tips for Remote Work Productivity"</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step-item">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Describe Your Content</h3>
+                    <p>Provide a detailed description of what you want to write about</p>
+                    <div class="example-input">
+                        <i class="fas fa-align-left"></i>
+                        <span>"A comprehensive guide covering productivity strategies, time management techniques, and tools for remote workers to stay focused and efficient while working from home."</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step-item">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Choose Options</h3>
+                    <p>Select whether to generate an AI image for your blog</p>
+                    <div class="example-checkbox">
+                        <i class="fas fa-check-square"></i>
+                        <span>Generate Featured Image (Optional)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step-item">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>Generate & Choose</h3>
+                    <p>Click generate to get 3 different blog variations and pick your favorite</p>
+                    <div class="example-button">
+                        <i class="fas fa-magic"></i>
+                        <span>Generate Blog Post</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Example Categories -->
+    <section class="examples-section">
+        <div class="section-header">
+            <h2><i class="fas fa-folder-open"></i> Blog Examples by Category</h2>
+            <p>Explore different types of blogs you can create</p>
+        </div>
+        
+        <div class="examples-grid">
+            <div class="example-card">
+                <div class="example-icon">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <h3>Technology Blogs</h3>
+                <div class="example-demo">
+                    <div class="demo-title">Title: "The Future of Artificial Intelligence"</div>
+                    <div class="demo-description">Description: "Explore how AI is transforming industries, the latest breakthroughs in machine learning, and what the future holds for artificial intelligence technology."</div>
+                    <div class="demo-result">✨ Creates comprehensive tech content with latest trends and insights</div>
+                </div>
+            </div>
+            
+            <div class="example-card">
+                <div class="example-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3>Lifestyle Blogs</h3>
+                <div class="example-demo">
+                    <div class="demo-title">Title: "Healthy Morning Routines That Actually Work"</div>
+                    <div class="demo-description">Description: "Discover practical morning routines that boost energy, improve productivity, and set a positive tone for your entire day."</div>
+                    <div class="demo-result">✨ Generates engaging lifestyle content with actionable tips</div>
+                </div>
+            </div>
+            
+            <div class="example-card">
+                <div class="example-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>Business Blogs</h3>
+                <div class="example-demo">
+                    <div class="demo-title">Title: "Small Business Marketing on a Budget"</div>
+                    <div class="demo-description">Description: "Cost-effective marketing strategies for small businesses, including social media tactics, content marketing, and local SEO techniques."</div>
+                    <div class="demo-result">✨ Produces professional business content with strategic insights</div>
+                </div>
+            </div>
+            
+            <div class="example-card">
+                <div class="example-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3>Educational Blogs</h3>
+                <div class="example-demo">
+                    <div class="demo-title">Title: "Understanding Climate Change: A Beginner's Guide"</div>
+                    <div class="demo-description">Description: "An accessible explanation of climate change, its causes, effects, and what individuals can do to make a positive impact."</div>
+                    <div class="demo-result">✨ Creates informative educational content that's easy to understand</div>
+                </div>
+            </div>
+            
+            <div class="example-card">
+                <div class="example-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <h3>Food & Recipe Blogs</h3>
+                <div class="example-demo">
+                    <div class="demo-title">Title: "Quick and Healthy Weeknight Dinners"</div>
+                    <div class="demo-description">Description: "Collection of nutritious, easy-to-make dinner recipes that can be prepared in 30 minutes or less for busy weeknights."</div>
+                    <div class="demo-result">✨ Generates appetizing food content with detailed recipes</div>
+                </div>
+            </div>
+            
+            <div class="example-card">
+                <div class="example-icon">
+                    <i class="fas fa-plane"></i>
+                </div>
+                <h3>Travel Blogs</h3>
+                <div class="example-demo">
+                    <div class="demo-title">Title: "Hidden Gems of Southeast Asia"</div>
+                    <div class="demo-description">Description: "Discover off-the-beaten-path destinations in Southeast Asia, including local culture, must-try foods, and budget travel tips."</div>
+                    <div class="demo-result">✨ Creates inspiring travel content with practical advice</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tips Section -->
+    <section class="examples-section">
+        <div class="section-header">
+            <h2><i class="fas fa-star"></i> Pro Tips for Better Blogs</h2>
+        </div>
+        
+        <div class="tips-grid">
+            <div class="tip-card">
+                <div class="tip-icon">💡</div>
+                <h3>Be Specific</h3>
+                <p>The more detailed your description, the better your generated content will be. Include target audience, tone, and key points you want to cover.</p>
+            </div>
+            
+            <div class="tip-card">
+                <div class="tip-icon">🎯</div>
+                <h3>Focus on Value</h3>
+                <p>Describe what value your blog will provide to readers. Will it solve a problem, teach something new, or entertain?</p>
+            </div>
+            
+            <div class="tip-card">
+                <div class="tip-icon">📝</div>
+                <h3>Use Keywords</h3>
+                <p>Include relevant keywords in your title and description to help create SEO-friendly content that ranks well in search engines.</p>
+            </div>
+            
+            <div class="tip-card">
+                <div class="tip-icon">🖼️</div>
+                <h3>Add Images</h3>
+                <p>Enable image generation to create professional visuals that complement your content and make it more engaging.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="examples-section cta-section">
+        <div class="cta-content">
+            <h2>Ready to Create Your First Blog?</h2>
+            <p>Use these examples as inspiration and start generating amazing content today!</p>
+            <a href="/" class="btn btn-primary btn-large">
+                <i class="fas fa-rocket"></i> Start Creating Now
+            </a>
+        </div>
+    </section>
+</div>
+
+<!-- Background image style -->
+<style>
+body {
+    background-image: url('static/images/blog_5fda119adf447eafae1d86599d731c84.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+</style>
+
+
+
+<style>
+.examples-hero {
+    text-align: center;
+    padding: 60px 0;
+    margin-bottom: 60px;
+}
+
+.examples-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #853131;
+    margin-bottom: 20px;
+}
+
+.examples-subtitle {
+    font-size: 1.3rem;
+    color: #4a5568;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.examples-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.examples-section {
+    margin-bottom: 80px;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #149b35;
+    margin-bottom: 15px;
+}
+
+.section-header h2 i {
+    color: #c72d41;
+    margin-right: 15px;
+}
+
+.section-header p {
+    font-size: 1.1rem;
+    color: #4a5568;
+}
+
+.steps-container {
+    display: grid;
+    gap: 30px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.step-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 25px;
+    padding: 30px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.step-number {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.step-content h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #1a202c;
+    margin-bottom: 10px;
+}
+
+.step-content p {
+    color: #4a5568;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.example-input, .example-checkbox, .example-button {
+    background: #f7fafc;
+    padding: 15px 20px;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.example-input i, .example-checkbox i, .example-button i {
+    color: #667eea;
+}
+
+.example-input span, .example-checkbox span, .example-button span {
+    color: #2d3748;
+    font-weight: 500;
+}
+
+.examples-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.example-card {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.example-card:hover {
+    transform: translateY(-5px);
+}
+
+.example-icon {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.example-icon i {
+    font-size: 1.8rem;
+    color: white;
+}
+
+.example-card h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #1a202c;
+    margin-bottom: 20px;
+}
+
+.example-demo {
+    background: #f8fafc;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+}
+
+.demo-title {
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+}
+
+.demo-description {
+    color: #4a5568;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.demo-result {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.tip-card {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.tip-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.tip-card h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #1a202c;
+    margin-bottom: 15px;
+}
+
+.tip-card p {
+    color: #4a5568;
+    line-height: 1.6;
+}
+
+.cta-section {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 20px;
+    padding: 60px 40px;
+    text-align: center;
+    color: white;
+}
+
+.cta-content h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.cta-content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+.btn-large {
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .examples-title {
+        font-size: 2.5rem;
+    }
+    
+    .step-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .examples-grid,
+    .tips-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+{% endblock %}

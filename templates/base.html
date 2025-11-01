@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{% block description %}Lifestyle blog with beautiful design{% endblock %}">
+    <title>{% block title %}letsblog - Lifestyle Blog{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        /* Header */
+        .header {
+            background: #fff;
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            color: #666;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #333;
+        }
+
+        .logo {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            font-weight: 600;
+            color: #333;
+            text-decoration: none;
+            text-align: center;
+            flex: 1;
+        }
+
+        .header-right {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .search-icon, .menu-icon {
+            color: #666;
+            font-size: 18px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .search-icon:hover, .menu-icon:hover {
+            color: #333;
+        }
+
+        /* Navigation */
+        .navigation {
+            background: #fff;
+            padding: 20px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: #666;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: #333;
+        }
+
+        .nav-menu a.active {
+            color: #333;
+        }
+
+        .nav-menu a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #a8d5ba;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            height: 60vh;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        .hero-slideshow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+        }
+
+        .hero-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+            z-index: 1;
+        }
+
+        .hero-slide:nth-child(1) {
+            background-image: url('/static/images/image1.jpg');
+        }
+
+        .hero-slide:nth-child(2) {
+            background-image: url('/static/images/image2.jpg');
+        }
+
+        .hero-slide:nth-child(3) {
+            background-image: url('/static/images/image3.jpg');
+        }
+
+        .hero-slide:nth-child(4) {
+            background-image: url('/static/images/image4.jpg');
+        }
+
+        .hero-slide:nth-child(5) {
+            background-image: url('/static/images/image5.jpg');
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 300;
+            margin-bottom: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        /* Cards */
+        .content-card {
+            background: #fff;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-radius: 0;
+            overflow: hidden;
+        }
+
+        .card-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 40px;
+            text-align: center;
+        }
+
+        .card-category {
+            color: #a8d5ba;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            font-size: 2rem;
+            font-weight: 300;
+            color: #333;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .card-date {
+            color: #999;
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .card-excerpt {
+            color: #666;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+
+        .read-more {
+            color: #333;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-bottom: 1px solid #333;
+            padding-bottom: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .read-more:hover {
+            color: #a8d5ba;
+            border-color: #a8d5ba;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: #f9f9f9;
+            padding: 40px;
+            margin-top: 40px;
+        }
+
+        .sidebar h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .sidebar-content {
+            text-align: center;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Footer Sections */
+        .footer-section {
+            background: #a8d5ba;
+            padding: 60px 0;
+            text-align: center;
+            color: #333;
+        }
+
+        .footer-section h2 {
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .footer-section p {
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .about-section {
+            background: #fff;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .about-section h2 {
+            font-size: 2rem;
+            font-weight: 300;
+            color: #333;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .about-section p {
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Forms */
+        .form-container {
+            background: #fff;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin: 40px 0;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            color: #333;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .form-input,
+        .form-textarea,
+        .form-select {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #e0e0e0;
+            background: #fff;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 14px;
+            color: #333;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: #a8d5ba;
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .btn {
+            background: #333;
+            color: #fff;
+            padding: 15px 30px;
+            border: none;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: #a8d5ba;
+            color: #333;
+        }
+
+        .btn-full {
+            width: 100%;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .logo {
+                font-size: 2.5rem;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .main-content {
+                padding: 40px 15px;
+            }
+
+            .card-content {
+                padding: 30px 20px;
+            }
+
+            .card-title {
+                font-size: 1.5rem;
+            }
+
+            .sidebar {
+                padding: 30px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+                letter-spacing: 2px;
+            }
+
+            .nav-menu a {
+                font-size: 12px;
+            }
+
+            .card-content {
+                padding: 25px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="social-icons">
+                <a href="https://www.facebook.com/people/ELSYS/100069134966413/"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://x.com/elsysindiacorp"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/elsyseasterneurope/?hl=en"><i class="fab fa-instagram"></i></a>
+            </div>
+            
+            <a href="/" class="logo">Blog Generation</a>
+            
+            <div class="header-right">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="navigation">
+        <div class="nav-container">
+            <ul class="nav-menu">
+                <li><a href="/">HOME</a></li>
+                <li><a href="/create" target="_blank">CREATE</a></li>
+                <li><a href="/examples">EXAMPLES</a></li>
+                <li><a href="/about">ABOUT</a></li>
+                <li><a href="/contact">CONTACT ME</a></li>
+                
+            </ul>
+        </div>
+    </nav>
+
+    {% if request.url.path == "/" %}
+    {% block hero %}
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-slideshow">
+            <div class="hero-slide active"></div>
+            <div class="hero-slide"></div>
+            <div class="hero-slide"></div>
+            <div class="hero-slide"></div>
+            <div class="hero-slide"></div>
+        </div>
+        <div class="hero-content">
+            {% block hero_content %}
+            {% endblock %}
+        </div>
+    </section>
+    {% endblock %}
+    {% endif %}
+
+    <!-- Main Content -->
+    <main class="main-content">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Footer Sections -->
+    <section class="footer-section">
+        <h2>Beauty of Nature</h2>
+        <p>Jun 22, 2017</p>
+    </section>
+<!-- 
+    <section class="about-section">
+        <h2>About Me</h2>
+        <p>Welcome to my lifestyle blog where I share my passion for natural ingredients, beauty tips, and sustainable living. Join me on this journey of discovering the beauty in everyday life.</p>
+    </section> -->
+
+    <script>
+        // Hero slideshow functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.hero-slide');
+        const totalSlides = slides.length;
+
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % totalSlides;
+            slides[currentSlide].classList.add('active');
+        }
+
+        // Auto-advance slides every 4 seconds
+        setInterval(nextSlide, 4000);
+
+        // Simple mobile menu toggle
+        document.querySelector('.menu-icon').addEventListener('click', function() {
+            document.querySelector('.nav-menu').classList.toggle('mobile-open');
+        });
+
+        // Add mobile menu styles
+        const style = document.createElement('style');
+        style.textContent = `
+            @media (max-width: 768px) {
+                .nav-menu {
+                    display: none;
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    right: 0;
+                    background: #fff;
+                    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+                    z-index: 1000;
+                }
+                
+                .nav-menu.mobile-open {
+                    display: flex;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+
+    <!-- Search Bar (replaces the modal) -->
+    <div id="searchBar" class="search-bar">
+        <div class="search-bar-container">
+            <form action="/generate" method="post" class="search-bar-form">
+                <input type="text" name="title" placeholder="Enter blog title and press Enter..." class="search-bar-input" required>
+                <input type="hidden" name="generation_method" value="quick">
+                <input type="hidden" name="generate_image" value="on">
+                <button type="submit" class="search-bar-submit">
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+                <button type="button" class="search-bar-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <style>
+    .search-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid #e1e5e9;
+        z-index: 1000;
+        transform: translateY(-100%);
+        transition: transform 0.3s ease;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .search-bar.active {
+        transform: translateY(0);
+    }
+
+    .search-bar-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .search-bar-form {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: white;
+        border-radius: 50px;
+        padding: 5px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    .search-bar-input {
+        flex: 1;
+        border: none;
+        padding: 15px 20px;
+        font-size: 16px;
+        background: transparent;
+        outline: none;
+        color: #333;
+    }
+
+    .search-bar-input::placeholder {
+        color: #999;
+    }
+
+    .search-bar-submit,
+    .search-bar-close {
+        width: 45px;
+        height: 45px;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+
+    .search-bar-submit {
+        background: linear-gradient(135deg, #150501, #8b5cf6);
+        color: white;
+    }
+
+    .search-bar-submit:hover {
+        background: linear-gradient(135deg, #4f46e5, #7c3aed);
+        transform: scale(1.1);
+    }
+
+    .search-bar-close {
+        background: #f5f5f5;
+        color: #666;
+    }
+
+    .search-bar-close:hover {
+        background: #e0e0e0;
+    }
+
+    @media (max-width: 768px) {
+        .search-bar-container {
+            padding: 15px;
+        }
+        
+        .search-bar-input {
+            padding: 12px 15px;
+            font-size: 14px;
+        }
+    }
+    </style>
+
+    <script>
+    // Search bar functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchIcon = document.querySelector('.search-icon');
+        const searchBar = document.getElementById('searchBar');
+        const searchInput = document.querySelector('.search-bar-input');
+        const closeBtn = document.querySelector('.search-bar-close');
+        
+        // Open search bar when search icon is clicked
+        if (searchIcon) {
+            searchIcon.addEventListener('click', function(e) {
+                e.preventDefault();
+                searchBar.classList.add('active');
+                searchInput.focus();
+            });
+        }
+        
+        // Close search bar when close button is clicked
+        if (closeBtn) {
+            closeBtn.addEventListener('click', function() {
+                searchBar.classList.remove('active');
+            });
+        }
+        
+        // Close search bar on Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && searchBar.classList.contains('active')) {
+                searchBar.classList.remove('active');
+            }
+        });
+        
+        // Auto-submit on Enter key
+        if (searchInput) {
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    if (this.value.trim()) {
+                        this.closest('form').submit();
+                    }
+                }
+            });
+        }
+    });
+    </script>
+</body>
+</html>

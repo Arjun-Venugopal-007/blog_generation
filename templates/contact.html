@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Me - letsblog{% endblock %}
+
+{% block hero_content %}
+<h1>Contact Me</h1>
+<p>Let's start a conversation</p>
+{% endblock %}
+
+{% block content %}
+<!-- Fullscreen Background -->
+<style>
+    body {
+        background-image: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=compress&cs=tinysrgb&w=1600');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+    }
+</style>
+
+<!-- Semi-transparent content wrapper -->
+<div style="background-color: rgba(255, 255, 255, 0.92); max-width: 1000px; margin: 40px auto; padding: 40px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.2);">
+
+    <!-- Contact Card -->
+    <article class="content-card" style="border-radius: 12px; overflow: hidden;">
+        <img src="https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=2070&h=1380&dpr=1" alt="Contact us" class="card-image" style="width: 100%; height: auto;">
+        <div class="card-content" style="padding: 30px;">
+            <div class="card-category">Contact</div>
+            <h2 class="card-title">Get In Touch</h2>
+            <div class="card-date">Available 24/7</div>
+            <p class="card-excerpt">
+                Have questions about our AI-powered blog platform? Want to collaborate or share feedback? 
+                I'd love to hear from you. Reach out using any of the methods below.
+            </p>
+        </div>
+    </article>
+
+    <!-- Contact Info Cards -->
+    <div class="form-container" style="margin-top: 40px;">
+        <h2 style="text-align: center; margin-bottom: 30px; font-size: 2rem; font-weight: 300; letter-spacing: 2px; text-transform: uppercase; color: #333;">Contact Information</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
+            <!-- Phone Info -->
+            <div style="text-align: center; padding: 30px; background: #f9f9f9; border-radius: 8px;">
+                <i class="fas fa-phone" style="font-size: 2rem; color: #a8d5ba; margin-bottom: 20px;"></i>
+                <h3 style="color: #333; margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;">Phone</h3>
+                <p style="color: #666; font-size: 1.1rem; font-weight: 500;">8300894291</p>
+                <p style="color: #999; font-size: 0.9rem; margin-top: 5px;">Available Mon-Fri, 9AM-6PM EST</p>
+            </div>
+
+            <!-- Email Info -->
+            <div style="text-align: center; padding: 30px; background: #f9f9f9; border-radius: 8px;">
+                <i class="fas fa-envelope" style="font-size: 2rem; color: #a8d5ba; margin-bottom: 20px;"></i>
+                <h3 style="color: #333; margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;">Email</h3>
+                <p style="color: #666; font-size: 1.1rem; font-weight: 500;">
+                    <a href="mailto:krishnaarjun@gmail.com" style="color: #666; text-decoration: none;">
+                        krishnaarjun852@gmail.com
+                    </a>
+                </p>
+                <p style="color: #999; font-size: 0.9rem; margin-top: 5px;">Response within 24 hours</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,396 @@
+{% extends "base.html" %}
+
+{% block title %}About - BlogAI{% endblock %}
+
+{% block content %}
+<div class="about-hero">
+    <div class="about-hero-content">
+        <h1 class="about-title">About BlogAI</h1>
+        <p class="about-subtitle">Revolutionizing content creation with artificial intelligence</p>
+    </div>
+    <div class="about-hero-image">
+        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="AI Technology" class="hero-img">
+    </div>
+</div>
+
+<div class="about-content">
+    <section class="about-section">
+        <div class="section-header">
+            <h2><i class="fas fa-lightbulb"></i> Our Mission</h2>
+        </div>
+        <div class="section-content">
+            <p>At BlogAI, we believe that everyone should have access to high-quality content creation tools. Our mission is to democratize professional blog writing by leveraging the power of artificial intelligence to help creators, businesses, and individuals produce engaging, well-structured content in seconds.</p>
+        </div>
+    </section>
+
+    <section class="about-section">
+        <div class="section-header">
+            <h2><i class="fas fa-cogs"></i> How It Works</h2>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-edit"></i>
+                </div>
+                <h3>Smart Content Generation</h3>
+                <p>Our AI analyzes your title and description to create comprehensive, engaging blog posts tailored to your specific needs.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-palette"></i>
+                </div>
+                <h3>Multiple Writing Styles</h3>
+                <p>Choose from various writing styles including professional, casual, technical, and creative to match your brand voice.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-image"></i>
+                </div>
+                <h3>AI-Generated Images</h3>
+                <p>Enhance your blogs with professional AI-generated images using FLUX.1-dev technology for stunning visual content.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section">
+        <div class="section-header">
+            <h2><i class="fas fa-rocket"></i> Why Choose BlogAI?</h2>
+        </div>
+        <div class="benefits-grid">
+            <div class="benefit-item">
+                <div class="benefit-number">01</div>
+                <div class="benefit-content">
+                    <h3>Lightning Fast</h3>
+                    <p>Generate professional blog posts in seconds, not hours</p>
+                </div>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-number">02</div>
+                <div class="benefit-content">
+                    <h3>SEO Optimized</h3>
+                    <p>Content structured for search engine visibility and engagement</p>
+                </div>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-number">03</div>
+                <div class="benefit-content">
+                    <h3>Multiple Variations</h3>
+                    <p>Get 3 different versions to choose the perfect fit for your needs</p>
+                </div>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-number">04</div>
+                <div class="benefit-content">
+                    <h3>Professional Quality</h3>
+                    <p>AI-powered content that matches human writing standards</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section">
+        <div class="section-header">
+            <h2><i class="fas fa-chart-line"></i> Technology Stack</h2>
+        </div>
+        <div class="tech-grid">
+            <div class="tech-item">
+                <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="AI Technology" class="tech-image">
+                <h3>Advanced AI Models</h3>
+                <p>Powered by state-of-the-art language models for natural, engaging content</p>
+            </div>
+            <div class="tech-item">
+                <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Cloud Computing" class="tech-image">
+                <h3>Cloud Infrastructure</h3>
+                <p>Scalable, reliable cloud-based processing for consistent performance</p>
+            </div>
+            <div class="tech-item">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Data Analytics" class="tech-image">
+                <h3>Smart Analytics</h3>
+                <p>Continuous learning and optimization for better content quality</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section cta-section">
+        <div class="cta-content">
+            <h2>Ready to Transform Your Content Creation?</h2>
+            <p>Join thousands of creators who are already using BlogAI to produce amazing content</p>
+            <a href="/" class="btn btn-primary btn-large">
+                <i class="fas fa-rocket"></i> Start Creating Now
+            </a>
+        </div>
+    </section>
+</div>
+
+<!-- Background image style -->
+<style>
+body {
+    background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+</style>
+<style>
+.about-hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    margin-bottom: 80px;
+    padding: 60px 0;
+}
+
+.about-hero-content {
+    max-width: 500px;
+}
+
+.about-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #224779;
+    margin-bottom: 20px;
+    line-height: 1.1;
+}
+
+.about-subtitle {
+    font-size: 1.3rem;
+    color: #4a5568;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.about-hero-image {
+    position: relative;
+}
+
+.hero-img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.about-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.about-section {
+    margin-bottom: 80px;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #13e7dd;
+    margin-bottom: 15px;
+}
+
+.section-header h2 i {
+    color: #6a92ce;
+    margin-right: 15px;
+}
+
+.section-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.section-content p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #4a5568;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    margin-top: 50px;
+}
+
+.feature-card {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.feature-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+}
+
+.feature-icon i {
+    font-size: 2rem;
+    color: white;
+}
+
+.feature-card h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #1a202c;
+    margin-bottom: 15px;
+}
+
+.feature-card p {
+    color: #4a5568;
+    line-height: 1.6;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.benefit-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 30px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.benefit-number {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.benefit-content h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #1a202c;
+    margin-bottom: 8px;
+}
+
+.benefit-content p {
+    color: #4a5568;
+    line-height: 1.5;
+}
+
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    margin-top: 50px;
+}
+
+.tech-item {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.tech-item:hover {
+    transform: translateY(-5px);
+}
+
+.tech-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.tech-item h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #1a202c;
+    margin: 20px 25px 10px;
+}
+
+.tech-item p {
+    color: #4a5568;
+    line-height: 1.6;
+    margin: 0 25px 25px;
+}
+
+.cta-section {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 20px;
+    padding: 60px 40px;
+    text-align: center;
+    color: white;
+}
+
+.cta-content h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.cta-content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+.btn-large {
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .about-hero {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+    
+    .about-title {
+        font-size: 2.5rem;
+    }
+    
+    .features-grid,
+    .benefits-grid,
+    .tech-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .benefit-item {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+</style>
+{% endblock %}
